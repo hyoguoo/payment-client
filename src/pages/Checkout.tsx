@@ -73,14 +73,36 @@ export function CheckoutPage() {
                 onClick={async () => {
                     const paymentWidget = paymentWidgetRef.current;
 
+                    const orderId = nanoid();
+
+                    const requestData = {
+                        orderId: orderId,
+                        amount: price,
+                    }
+
+                    const response = await fetch("http://localhost:8080/api/v1/orders/create", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(requestData),
+                    })
+
+                    const json = await response.json();
+
+                    if (!response.ok) {
+                        console.log(json);
+                        return;
+                    }
+
                     try {
                         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
                         // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
                         await paymentWidget?.requestPayment({
-                            orderId: nanoid(),
-                            orderName: "토스 티셔츠 외 2건",
-                            customerName: "김토스",
-                            customerEmail: "customer123@gmail.com",
+                            orderId: orderId,
+                            orderName: "오구 티셔츠 외 2건",
+                            customerName: "오구",
+                            customerEmail: "ogu@platypus.com",
                             successUrl: `${window.location.origin}/success`,
                             failUrl: `${window.location.origin}/fail`,
                         });
