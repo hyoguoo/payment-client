@@ -3,6 +3,7 @@ import {loadPaymentWidget, PaymentWidgetInstance,} from "@tosspayments/payment-w
 import {nanoid} from "nanoid";
 
 import "../App.css";
+import {CUSTOMER_EMAIL, CUSTOMER_NAME, ORDER_NAME, PRICE, PRODUCT_ID, QUANTITY, USER_ID} from "./Const";
 
 const selector = "#payment-widget";
 
@@ -53,8 +54,13 @@ export function CheckoutPage() {
                     const orderId = nanoid();
 
                     const requestData = {
+                        userId: USER_ID,
                         orderId: orderId,
-                        amount: price,
+                        amount: PRICE,
+                        orderProduct: {
+                            productId: PRODUCT_ID,
+                            quantity: QUANTITY,
+                        },
                     }
 
                     const response = await fetch("http://localhost:8080/api/v1/orders/create", {
@@ -77,9 +83,9 @@ export function CheckoutPage() {
                         // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
                         await paymentWidget?.requestPayment({
                             orderId: orderId,
-                            orderName: "오구 티셔츠 외 2건",
-                            customerName: "오구",
-                            customerEmail: "ogu@platypus.com",
+                            orderName: ORDER_NAME,
+                            customerName: CUSTOMER_NAME,
+                            customerEmail: CUSTOMER_EMAIL,
                             successUrl: `${window.location.origin}/success`,
                             failUrl: `${window.location.origin}/fail`,
                         });

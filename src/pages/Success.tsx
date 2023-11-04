@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import {USER_ID} from "./Const";
 
 export function SuccessPage() {
     const navigate = useNavigate();
@@ -7,6 +8,7 @@ export function SuccessPage() {
 
     useEffect(() => {
         const requestData = {
+            userId: USER_ID,
             orderId: searchParams.get("orderId"),
             amount: searchParams.get("amount"),
             paymentKey: searchParams.get("paymentKey"),
