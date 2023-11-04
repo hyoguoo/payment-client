@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
 import {loadPaymentWidget, PaymentWidgetInstance,} from "@tosspayments/payment-widget-sdk";
-import {nanoid} from "nanoid";
 
 import "../App.css";
 import {CUSTOMER_EMAIL, CUSTOMER_NAME, ORDER_NAME, PRICE, PRODUCT_ID, QUANTITY, USER_ID} from "./Const";
@@ -51,11 +50,8 @@ export function CheckoutPage() {
                 onClick={async () => {
                     const paymentWidget = paymentWidgetRef.current;
 
-                    const orderId = nanoid();
-
                     const requestData = {
                         userId: USER_ID,
-                        orderId: orderId,
                         amount: PRICE,
                         orderProduct: {
                             productId: PRODUCT_ID,
@@ -77,6 +73,7 @@ export function CheckoutPage() {
                         console.log(json);
                         return;
                     }
+                    const orderId = json.orderId;
 
                     try {
                         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
