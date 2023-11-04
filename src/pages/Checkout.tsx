@@ -40,33 +40,10 @@ export function CheckoutPage() {
         })();
     }, []);
 
-    useEffect(() => {
-        const paymentMethodsWidget = paymentMethodsWidgetRef.current;
-
-        if (paymentMethodsWidget == null) {
-            return;
-        }
-
-        // ------ 금액 업데이트 ------
-        // https://docs.tosspayments.com/reference/widget-sdk#updateamount결제-금액
-        paymentMethodsWidget.updateAmount(price);
-    }, [price]);
-
     return (
         <div>
             <h1>주문서</h1>
             <span>{`${price.toLocaleString()}원`}</span>
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        onChange={(event) => {
-                            setPrice(event.target.checked ? price - 5_000 : price + 5_000);
-                        }}
-                    />
-                    5,000원 할인 쿠폰 적용
-                </label>
-            </div>
             <div id="payment-widget"/>
             <div id="agreement"/>
             <button
