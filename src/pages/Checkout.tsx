@@ -157,7 +157,7 @@ export function CheckoutPage() {
               console.log(json);
               return;
             }
-            const orderId = json.orderId;
+            const orderId = json.data.orderId;
             console.log(orderId);
 
             await tossPayments?.requestPayment(paymentMethod, {
