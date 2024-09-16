@@ -5,4 +5,4 @@ export const PRODUCT_ID = 1;
 export const PRODUCT_QUANTITY = 1;
 export const ORDER_AMOUNT = PRODUCT_PRICE * PRODUCT_QUANTITY;
 export const USER_ID = 1;
-export const API_URL = 'http://localhost:8080/api/v1/orders';
+export const API_URL = 'http://localhost:8080/api/v1/payments';
