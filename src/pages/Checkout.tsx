@@ -143,7 +143,7 @@ export function CheckoutPage() {
               },
             };
 
-            const response = await fetch(`${API_URL}/create`, {
+            const response = await fetch(`${API_URL}/checkout`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
