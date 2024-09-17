@@ -137,10 +137,12 @@ export function CheckoutPage() {
             const requestData = {
               userId: USER_ID,
               amount: ORDER_AMOUNT,
-              orderProduct: {
-                productId: PRODUCT_ID,
-                quantity: PRODUCT_QUANTITY,
-              },
+              orderedProductList: [
+                {
+                  productId: PRODUCT_ID,
+                  quantity: PRODUCT_QUANTITY,
+                },
+              ],
             };
 
             const response = await fetch(`${API_URL}/checkout`, {
