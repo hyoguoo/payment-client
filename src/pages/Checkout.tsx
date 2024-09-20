@@ -6,8 +6,10 @@ import {
   CLIENT_KEY,
   ORDER_AMOUNT,
   ORDER_NAME,
-  PRODUCT_ID,
-  PRODUCT_QUANTITY,
+  PRODUCT_A_ID,
+  PRODUCT_A_QUANTITY,
+  PRODUCT_B_ID,
+  PRODUCT_B_QUANTITY,
   USER_ID,
 } from '../config.ts';
 
@@ -139,8 +141,12 @@ export function CheckoutPage() {
               amount: ORDER_AMOUNT,
               orderedProductList: [
                 {
-                  productId: PRODUCT_ID,
-                  quantity: PRODUCT_QUANTITY,
+                  productId: PRODUCT_A_ID,
+                  quantity: PRODUCT_A_QUANTITY,
+                },
+                {
+                  productId: PRODUCT_B_ID,
+                  quantity: PRODUCT_B_QUANTITY,
                 },
               ],
             };
