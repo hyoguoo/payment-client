@@ -138,7 +138,6 @@ export function CheckoutPage() {
             const paymentMethod = selectedMethod === 'tossPayments' ? selectedOption : '카드';
             const requestData = {
               userId: USER_ID,
-              amount: ORDER_AMOUNT,
               orderedProductList: [
                 {
                   productId: PRODUCT_A_ID,
